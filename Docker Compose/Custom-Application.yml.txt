@@ -1,0 +1,8 @@
+version : '3'
+
+services: #Each entry in the services section will create a separate container when docker-compose is run
+  distro:
+    image: alpine #Image would be download at RunTime
+    restart : always #Directive is used to indicate that the container should always restart
+    container_name: Custom_alpine #Directive is used to override the randomly generated container name and replace it with a name that is easier to remember and work with.
+    entrypoint: tail -f /dev/null #tail -f is an ongoing process, so it will run indefinitely and prevent the container from stopping. The default entrypoint is overridden to keep the container running.
