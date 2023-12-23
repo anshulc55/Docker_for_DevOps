@@ -5,14 +5,16 @@ services:
   db:
     image: mysql:5.7
     container_name: mysql-container
-    volumes:
-      - mysql_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpressuser
       MYSQL_PASSWORD: wordpress
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - wordpress_network
 
   # WordPress Service
   wordpress:
@@ -20,8 +22,6 @@ services:
       - db
     image: wordpress:latest
     container_name: wordpress-container
-    ports:
-      - "8000:80"
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
@@ -29,7 +29,11 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
     volumes:
       - wordpress_data:/var/www/html
+    ports:
+      - "8000:80"
+    networks:
+      - wordpress_network
 
 volumes:
   mysql_data:
-  wordpress_data:
+  
