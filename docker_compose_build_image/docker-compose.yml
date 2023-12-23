@@ -1,0 +1,24 @@
+# docker-compose.yml
+version: '3'
+services:
+  python_service:
+    build:
+      context: .
+      dockerfile: dockerfile.python
+      args:
+        - BASE_IMAGE=python:3.8
+        - APP_VERSION=2.0
+    environment:
+      - DEBUG=true
+    image: custom-image1:latest
+
+  node_service:
+    build:
+      context: .
+      dockerfile: dockerfile.node
+      args:
+        - BASE_IMAGE=node:14
+        - APP_NAME=my-nodejs-app
+    environment:
+      - NODE_ENV=development
+    image: anshuldevops/webapp_custom:1.0

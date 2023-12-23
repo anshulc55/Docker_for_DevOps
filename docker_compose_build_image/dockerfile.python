@@ -1,0 +1,16 @@
+# Dockerfile1
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+WORKDIR /app
+
+# Accept dynamic argument
+ARG APP_VERSION
+ENV APP_VERSION=${APP_VERSION}
+
+# Set environment variable
+ENV ENVIRONMENT=production
+
+COPY . .
+
+CMD ["python", "app.py"]
