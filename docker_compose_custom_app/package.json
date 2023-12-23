@@ -1,4 +1,13 @@
-dependencies: {
-    "express": "^4.17.1",
-    "mongoose": "^6.1.5"
+{
+    "name": "your-app",
+    "version": "1.0.0",
+    "main": "app.js",
+    "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^6.1.5"
+    },
+    "scripts": {
+      "start": "node app.js"
+    }
   }
+  
