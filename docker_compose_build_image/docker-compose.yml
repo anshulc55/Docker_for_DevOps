@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: dockerfile.python
       args:
-        - BASE_IMAGE=python:3.8
+        - BASE_IMAGE=python:3.9
         - APP_VERSION=2.0
     environment:
       - DEBUG=true
@@ -17,7 +17,7 @@ services:
       context: .
       dockerfile: dockerfile.node
       args:
-        - BASE_IMAGE=node:14
+        - BASE_IMAGE=node:21
         - APP_NAME=my-nodejs-app
     environment:
       - NODE_ENV=development
