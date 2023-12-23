@@ -1,56 +1,13 @@
-version: '3.8'
-
+version: '3'
 services:
-  web:
-    image: nginx:latest
-    container_name: mynginx
-    ports:
-      - "8080:80"
-    networks:
-      - frontend
-      - backend
-    environment:
-      - NGINX_ENV=production
-    depends_on:
-      - app
-
-  app:
+  node-app:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: myapp
-    environment:
-      - APP_ENV=production
-      - DATABASE_URL=mysql://user:password@db:3306/mydatabase
-    networks:
-      - backend
-    volumes:
-      - app_data:/app/data
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  db:
-    image: mysql:latest
-    container_name: mydb
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=mydatabase
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - backend
-
-networks:
-  frontend:
-    driver: bridge
-  backend:
-    driver: bridge
-
-volumes:
-  app_data:
-  db_data:
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
