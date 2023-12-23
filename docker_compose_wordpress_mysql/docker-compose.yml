@@ -29,8 +29,6 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpressuser
       WORDPRESS_DB_PASSWORD: wordpress
-    volumes:
-      - wordpress_data:/var/www/html
     ports:
       - "8000:80"
     networks:
@@ -38,7 +36,6 @@ services:
 
 volumes:
   mysql_data:
-  wordpress_data:
 
 networks:
   wordpress_network:
