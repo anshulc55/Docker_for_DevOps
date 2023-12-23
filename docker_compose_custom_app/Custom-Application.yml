@@ -9,8 +9,6 @@ services:
     networks:
       - frontend
       - backend
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     environment:
       - NGINX_ENV=production
     depends_on:
@@ -54,5 +52,4 @@ networks:
     driver: bridge
 
 volumes:
-  app_data:
   db_data:
