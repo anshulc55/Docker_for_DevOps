@@ -24,6 +24,8 @@ services:
       - DATABASE_URL=mysql://user:password@db:3306/mydatabase
     networks:
       - backend
+    volumes:
+      - app_data:/app/data
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]
       interval: 30s
@@ -50,4 +52,5 @@ networks:
     driver: bridge
 
 volumes:
+  app_data:
   db_data:
