@@ -1,0 +1,27 @@
+version: "3"
+services:
+  # Service Name Defined as web
+  web:
+    # Pull the Image from Repository.
+    # replace username/repo:tag with your name and image details
+    image: username/repo:tag 
+    # Command used to deploy the Service
+    deploy:
+      # Run 5 instances of that image as a service called web
+      replicas: 5
+      resources:
+        # Limiting each one to use, at most, 10% of a single core of CPU time and 50MB of RAM.
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      # Immediately restart containers if one fails.     
+      restart_policy:
+        condition: on-failure
+    # Map port 4000 on the host to web’s port 80.    
+    ports:
+      - "4000:80"
+    # Define default network  
+    networks:
+      - webnet
+networks:
+  webnet:
