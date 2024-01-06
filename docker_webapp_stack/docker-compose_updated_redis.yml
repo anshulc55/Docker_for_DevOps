@@ -32,7 +32,7 @@ services:
       - "/app/redis_data:/data"
     deploy:
       placement:
-        constraints: [Description.Hostname == manager2]
+        constraints: [node.hostname == manager2]
     command: redis-server --appendonly yes
     networks:
       - webnet
