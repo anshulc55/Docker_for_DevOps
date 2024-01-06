@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  webapp:
+    image: your_webapp_image:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 3
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.environment == production
+          - node.labels.zone == east

@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgress_user
+      POSTGRES_PASSWORD: db_password123
+      POSTGRES_DB: sample_db
+    ports:
+      - "5432:5432"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgress_user -d sample_db -h localhost -p 5432"]
+        interval: 30s
+        timeout: 10s
+        retries: 3

@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  # Service Name Defined as web
+  postgresDB:
+    # Pull the Image from Repository.
+    image: postgres:latest
+    # Command to use secrects in 
+    secrets:
+      # define Secrets name
+      - db_username
+      - db_password
+    environment:
+        # Define environment varaibles
+        POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+        POSTGRES_USER_FILE: /run/secrets/db_username
+
+secrets:
+  db_username:
+    file: ./postgres_user
+  db_password:
+    file: ./postgres_password
